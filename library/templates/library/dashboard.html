@@ -1,0 +1,23 @@
+{% extends 'library/base.html' %}
+{% block content %}
+<h2 class="text-center text-primary">Library Dashboard</h2>
+<a href="{% url 'add_book' %}" class="btn btn-success mb-3">Add Book</a>
+<table class="table table-bordered table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>Title</th><th>Author</th><th>ISBN</th><th>Publisher</th><th>Year</th><th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td><td>{{ book.author }}</td><td>{{ book.isbn }}</td><td>{{ book.publisher }}</td><td>{{ book.year }}</td>
+            <td>
+                <a href="{% url 'update_book' book.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'delete_book' book.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
